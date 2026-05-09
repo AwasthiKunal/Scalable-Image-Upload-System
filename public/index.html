@@ -716,6 +716,9 @@
   async function uploadImage(e) {
     addRipple(e);
     const resultPanel = document.getElementById('resultPanel');
+    const apiBase = window.location.protocol === 'file:'
+      ? 'http://localhost:3001'
+      : window.location.origin;
 
     if (!fileInput.files[0]) {
       showError('No file selected. Please choose an image first.');
@@ -734,13 +737,13 @@
       // Simulate realistic progress (replace with XHR for real progress)
       await simulateProgress();
 
-      const response = await fetch('/upload', { method: 'POST', body: formData });
-      const data = await response.json();
+      const response = await fetch(`${apiBase}/upload`, { method: 'POST', body: formData });
+      const data = await response.json().catch(() => ({}));
 
       setLoading(false);
       hideProgress();
 
-      if (data.imageUrl) {
+      if (response.ok && data.imageUrl) {
         showSuccess(data.imageUrl, fileInput.files[0]);
       } else {
         showError(data.message || 'Upload failed. Please try again.');
