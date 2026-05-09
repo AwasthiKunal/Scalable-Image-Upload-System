@@ -1,0 +1,23 @@
+{
+  "name": "final_project_pep",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+ "scripts": {
+  "server1": "cross-env DOTENV_CONFIG_PATH=.env node -r dotenv/config server.js",
+  "server2": "cross-env DOTENV_CONFIG_PATH=.env2 node -r dotenv/config server.js",
+  "server3": "cross-env DOTENV_CONFIG_PATH=.env3 node -r dotenv/config server.js"
+},
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.1045.0",
+    "cors": "^2.8.6",
+    "cross-env": "^10.1.0",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "multer": "^2.1.1",
+    "uuid": "^8.3.2"
+  }
+}
